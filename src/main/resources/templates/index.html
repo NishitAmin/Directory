@@ -1,0 +1,109 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Contact Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <br>
+    <div class="container" style="padding-top: 70px;">
+
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th>FirstName</th>
+                    <th>LastName</th>
+                    <th>PhoneNumber</th>
+                    <th>Birthday</th>
+                </tr>
+            </thead>
+            <tr th:each="contact : ${contactList}">
+                <td th:text="${contact.fname}">PROG</td>
+                <td th:text="${contact.lname}">39599</td>
+                <td th:text="${contact.phoneno}">Advanced Java Frameworks</td>
+                <td th:text="${contact.birthday}">2020-01-06</td>
+                <td><a th:href="@{/editContact/}+${contact.id}">Edit Contact</a></td>
+                <td><a th:href="@{/deleteContact/}+${contact.id}">Delete Contact</a></td>
+            </tr>
+        </table>
+        <br>
+        <h3> Add Contact Details: </h3>
+        <form class="form-container" style="border: 1px solid; padding:30px; padding-bottom:30px;" method="post" th:action="@{/insertContacts}" th:object="${contact}">
+
+            <div class="form-row">
+                <input type="hidden" class="form-control" placeholder="id" name="id" th:field="*{id}">
+                <div class="form-group col-md-6">
+                    <label class="text-primary" for="firstname">FirstName</label>
+                    <input type="text" class="form-control" name="fname" th:field="*{fname}" placeholder="FirstName">
+                    <div style="color:red" th:text="${fname}">Error with First Name</div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="text-primary" for="lname">LastName</label>
+                    <input type="text" class="form-control" name="lname" th:field="*{lname}" placeholder="LastName">
+                    <div style="color:red" th:text="${lname}">Error with Last Name</div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label class="text-primary" for="phonenumber">PhoneNumber</label>
+                    <input type="text" class="form-control" name="phoneno" th:field="*{phoneno}" placeholder="Phone Number">
+                    <div style="color:red" th:text="${phoneno}">Error with Phone Number</div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="text-primary" for="birthday">BirthDate</label>
+                    <input type="date" class="form-control" name="birthday" th:field="*{birthday}" placeholder="Birth Date">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="text-primary" for="street">Address</label>
+                <input type="text" class="form-control" name="street" th:field="*{address.street}" placeholder="Address">
+                <div style="color:red" th:text="${street}">Error with Street Address</div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label class="text-primary" for="city">City</label>
+                    <input type="text" class="form-control" name="city" th:field="*{address.city}" placeholder="City">
+                    <div style="color:red" th:text="${city}">Error with City</div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label class="text-primary" for="province">Province</label>
+                    <select id="province" class="form-control" name="province" th:field="*{address.province}">
+                        <option th:value="''">Choose Province</option>
+                        <option th:value="'AB'">Alberta</option>
+                        <option th:value="'BC'">British Columbia</option>
+                        <option th:value="'MB'">Manitoba</option>
+                        <option th:value="'NB'">New Brunswick</option>
+                        <option th:value="'NL'">Newfoundland and Labrador</option>
+                        <option th:value="'NS'">Nova Scotia</option>
+                        <option th:value="'ON'">Ontario</option>
+                        <option th:value="'PE'">Prince Edward Island</option>
+                        <option th:value="'QC'">Quebec</option>
+                        <option th:value="'SK'">Saskatchewan</option>
+                        <option th:value="'NT'">Northwest Territories</option>
+                        <option th:value="'NU'">Nunavut</option>
+                        <option th:value="'YT'">Yukon</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label class="text-primary" for="postalCode">Postal Code</label>
+                    <input type="text" class="form-control" name="postalcode" th:field="*{address.postalcode}" placeholder="A0A 0A0">
+                    <div style="color:red" th:text="${postalcode}">Error with Postal Code</div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        </form>
+
+        <br>
+        <a class="btn btn-dark btn-block" href="/searchContacts" role="button">Search Contacts</a>
+        <br>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,2 @@
+INSERT INTO Address (id, street, city, province, postalcode) VALUES (1 , 'Meadowlark', 'Brampton', 'ON', 'L6P 3C8'), (2 , 'Meadowlark', 'Brampton', 'ON', 'L6P 3C8'), (3 , 'Meadowlark', 'Brampton', 'ON', 'L6P 3C8');
+INSERT INTO Contact (id, fname, lname, phoneno, birthday, address_id) VALUES (1, 'Nishit', 'Amin', '1233233232', '2020-10-06', 1), (2, 'Jay','Patel', '3211231234', '2020-10-06', 2), (3, 'Rohan', 'Patel', '1233212443', '2020-10-06', 3);
